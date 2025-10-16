@@ -1,25 +1,33 @@
-public class Character {
-    private String name;
-    private int level;
-    private int health;
+public abstract class Character {
+    protected String name;
+    protected int hp;
+    protected int level;
+    protected int attackPower;
 
-    public Character(String name, int level, int health){
+    public Character(String name, int hp, int attackPower) {
         this.name = name;
-        this.level = level;
-        this.health = health;
+        this.hp = hp;
+        this.level = 1;
+        this.attackPower = attackPower;
     }
 
-    public String getName(){
-        return name;
-    }
-    public int getLevel(){
-        return  level;
-    }
-    public int getHealth(){
-        return health;
+    public boolean isAlive() {
+        return hp > 0;
     }
 
-    public String toString() {
-        return name + " (Level: " + level + ", Health: " + health + ")";
+    public void takeDamage(int damage) {
+        hp -= damage;
+        if (hp < 0) hp = 0;
+    }
+
+    public void levelUp() {
+        level++;
+        hp += 10;
+        attackPower += 5;
+        System.out.println(name + " awansował na poziom " + level + "!");
+    }
+
+    public void showStats() {
+        System.out.println("Postać: " + name + " | HP: " + hp + " | Poziom: " + level + " | Atak: " + attackPower);
     }
 }
