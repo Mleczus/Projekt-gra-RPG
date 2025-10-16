@@ -1,6 +1,10 @@
-public class Warrior {
-    public Warrior(String name, int level, int health){
-
+public class Warrior extends Character implements Attackable {
+    public Warrior(String name) {
+        super(name, 100, 10);
     }
 
+    public void attack(Character target) {
+        System.out.println(name + " atakuje mieczem!");
+        target.takeDamage(attackPower);
+    }
 }
