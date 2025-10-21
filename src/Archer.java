@@ -1,10 +1,10 @@
 public class Archer extends Character implements Attackable {
-    public Archer(String name) {
-        super(name, 70, 15);
+    public Archer(String imie){
+        super(imie, 15, 1, 4);
     }
 
-    public void attack(Character target) {
-        System.out.println(name + " strzela z łuku!");
-        target.takeDamage(attackPower);
+    public void attack(Character target){
+        System.out.println(imie + " strzela z łuku!");
+        target.dostawaneobrazenia(mocataku);
     }
 }
