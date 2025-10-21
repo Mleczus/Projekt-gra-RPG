@@ -1,10 +1,10 @@
 public class Monster extends Character {
-    public Monster(String name, int hp, int attackPower) {
-        super(name, hp, attackPower);
+    public Monster(String imie, int hp, int level, int mocataku){
+        super(imie,hp,1,mocataku);
     }
 
-    public void attack(Character target) {
-        System.out.println(name + " atakuje bohatera!");
-        target.takeDamage(attackPower);
+    public void attack(Character target){
+        System.out.println(imie + " atakuje bohatera!");
+        target.dostawaneobrazenia(mocataku);
     }
 }
