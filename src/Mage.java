@@ -1,10 +1,11 @@
 public class Mage extends Character implements Attackable {
-    public Mage(String name) {
-        super(name, 60, 20);
+    public Mage(String imie){
+        super(imie, 20, 1, 5);
     }
 
-    public void attack(Character target) {
-        System.out.println(name + " rzuca zaklęcie!");
-        target.takeDamage(attackPower);
+    @Override
+    public void attack(Character target){
+        System.out.println(imie + " rzucił zaklęcie!");
+        target.dostawaneobrazenia(mocataku);
     }
 }
