@@ -34,7 +34,9 @@ public class Main {
         bohater.pokazStatystyki();
 
 
+
         System.out.println("\n--- ROZPOCZYNASZ PRZYGODĘ ---");
+        while(bohater.hp > 0){
         System.out.println("Wybierz walkę:");
         System.out.println("1.Potwór");
         System.out.println("2.Boss");
@@ -44,15 +46,15 @@ public class Main {
         sc.nextLine();
         switch(wybor2){
             case 1:
-                Monster m = new Monster("Horda Minionów", 50, 1, 5);
+                Monster m = new Monster("Horda Minionów", 40, 1, 8);
                 m.pokazStatystyki();
                 break;
             case 2:
-                Boss b = new Boss("Smok Kresu", 100, 4, 25);
+                Boss b = new Boss("Smok Kresu", 120, 4, 18);
                 b.pokazStatystyki();
                 break;
             case 3:
-                UltraMegaHardBoss u = new UltraMegaHardBoss("Poseidon", 250, 10, 35);
+                UltraMegaHardBoss u = new UltraMegaHardBoss("Poseidon", 250, 10, 30);
                 u.pokazStatystyki();
                 break;
             default:
@@ -60,12 +62,12 @@ public class Main {
                 break;
         }
 
-        if(wybor == 1) {
+        if(wybor2 == 1) {
             System.out.println("Ile chcesz pokonać potworów");
             int iloscWalk = sc.nextInt();
-            for(int i = 0; i < iloscWalk; i++){
+            for (int i = 0; i < iloscWalk; i++) {
                 System.out.println("\n--- WALKA Z POTWOREM ---");
-                Monster monster = new Monster("Horda Minionów", 50, 1, 5);
+                Monster monster = new Monster("Horda Minionów", 40, 1, 8);
 
                 while (bohater.czyZyje() && monster.czyZyje()) {
                     bohater.attack(monster);
@@ -79,13 +81,82 @@ public class Main {
                 if (bohater.czyZyje()) {
                     System.out.println("\nWygrałeś walkę!");
                     bohater.levelUp();
+                    bohater.pokazStatystyki();
                 } else {
                     System.out.println("\nZostałeś pokonany...");
+                    sc.close();
+                    return;
+                }
+            }
+        } else if (wybor2 == 2) {
+            if(bohater.level >= 10){
+            System.out.println("\"\\n--- WALKA Z BOSSEM ---\"");
+
+            Boss boss = new Boss("Smok Kresu", 200, 4, 18);
+
+            //TRYB NORMALNY
+                while (bohater.czyZyje() && boss.czyZyje()) {
+                    bohater.attack(boss);
+                    if (boss.czyZyje()) {
+                        boss.attack(bohater);
+                    }
+
+                    if(boss.hp <= 100 && !boss.furia){
+                        System.out.println("| BOSS PRZECHODZI W TRYB FURII |");
+                        boss.mocataku *= 2;
+                        boss.hp += 10;
+                        boss.furia = true;
+                    }
+
+                    System.out.println(bohater.imie + " ma teraz HP: " + bohater.hp);
+                    System.out.println(boss.imie + " ma teraz HP: " + boss.hp);
+
                 }
 
+                if (bohater.czyZyje()) {
+                    System.out.println("\nWygrałeś walkę z Bossem, ale to jeszcze nie koniec...");
+                    bohater.levelUp();
+                    bohater.pokazStatystyki();
+                } else {
+                    System.out.println("\nZostałeś pokonany...");
+                    sc.close();
+                    return;
+                }
+
+        }
+        }
+
+            System.out.println("| ULECZ SIĘ PRZED  KOLEJNĄ WALKĄ |");
+            System.out.println("Czy chcesz się uleczyć? ");
+            System.out.println("1.Tak");
+            System.out.println("2.Nie");
+            sc.nextLine();
+            System.out.println("Twój wybór: ");
+            int wybor3 = sc.nextInt();
+
+            switch (wybor3) {
+                case 1:
+                    System.out.println("Uleczyłeś się!");
+                    bohater.Leczenie();
+                    bohater.pokazStatystyki();
+                    break;
+                case 2:
+                    System.out.println("Nie uleczyłeś się!");
+                    bohater.pokazStatystyki();
+                    break;
+            }
+
+            System.out.println("Chcesz walczyć dalej?");
+            System.out.println("1.Tak");
+            System.out.println("2.Nie");
+            int wybor4 = sc.nextInt();
+
+            if (wybor4 == 2) {
+                System.out.println(imie + " się poddał!");
                 sc.close();
             }
-            }
+        }
         }
     }
+
 
