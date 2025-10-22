@@ -1,6 +1,6 @@
 public class Warrior extends Character implements Attackable{
     public Warrior(String imie){
-        super(imie, 25, 1, 7);
+        super(imie, 100, 1, 8);
     }
 
     public void attack(Character target){
