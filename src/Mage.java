@@ -1,6 +1,6 @@
 public class Mage extends Character implements Attackable {
     public Mage(String imie){
-        super(imie, 20, 1, 5);
+        super(imie, 70, 1, 8);
     }
 
     @Override
