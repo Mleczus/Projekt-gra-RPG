@@ -13,8 +13,8 @@ public abstract class Character {
 
     public void levelUp(){
         level++;
-        hp += 20;
-        mocataku += 15;
+        hp += 5;
+        mocataku += 5;
         System.out.println("LEVEL UP NA POZIOM: " + level);
     }
 
@@ -24,19 +24,19 @@ public abstract class Character {
 
     public void dostawaneobrazenia(int obrazenia){
         hp -= obrazenia;
-        if(hp <= 0){
-            System.out.println("Nie żyjesz. | PRZEGRANA |");
+        if(hp < 0){
+            hp = 0;
         }
     }
+
 
     public boolean czyZyje(){
         return hp > 0;
     }
 
     public void Leczenie(){
-        hp += 20;
+        hp += 10;
         mocataku += 2;
-        levelUp();
     }
 
 
