@@ -1,6 +1,6 @@
 public class Archer extends Character implements Attackable {
     public Archer(String imie){
-        super(imie, 15, 1, 4);
+        super(imie, 80, 1, 8);
     }
 
     public void attack(Character target){
