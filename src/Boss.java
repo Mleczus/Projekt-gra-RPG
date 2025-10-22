@@ -1,4 +1,5 @@
 public class Boss extends Character {
+    public boolean furia = false;
     public Boss(String imie, int hp, int level, int mocataku){
         super(imie,hp,level,mocataku);
     }
