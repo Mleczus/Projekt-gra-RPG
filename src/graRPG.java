@@ -124,6 +124,51 @@ public class Main {
                 }
 
         }
+        } else if (wybor2 == 3) {
+            if(bohater.level >= 20){
+                System.out.println("\"\\n--- WALKA Z ULTRA MEGA HARD BOSSEM ---\"");
+
+                UltraMegaHardBoss ultraMegaHardBoss = new UltraMegaHardBoss("Poseidon", 500, 10, 50);
+
+                //TRYB NORMALNY
+                while (bohater.czyZyje() && ultraMegaHardBoss.czyZyje()) {
+                    bohater.attack(ultraMegaHardBoss);
+                    if (ultraMegaHardBoss.czyZyje()) {
+                        ultraMegaHardBoss.attack(bohater);
+                    }
+
+                    //TRYB FURII
+                    if(ultraMegaHardBoss.hp <= 350 && !ultraMegaHardBoss.furia){
+                        System.out.println("| BOSS PRZECHODZI W TRYB FURII |");
+                        ultraMegaHardBoss.mocataku *= 2;
+                        ultraMegaHardBoss.hp += 10;
+                        ultraMegaHardBoss.furia = true;
+                    }
+
+                    //TRYB FURII
+                    if(ultraMegaHardBoss.hp <= 250 && !ultraMegaHardBoss.ultraRage){
+                        System.out.println("| BOSS PRZECHODZI W TRYB ULTRA RAGE |");
+                        ultraMegaHardBoss.mocataku *= 3;
+                        ultraMegaHardBoss.hp += 20;
+                        ultraMegaHardBoss.ultraRage = true;
+                    }
+
+                    System.out.println(bohater.imie + " ma teraz HP: " + bohater.hp);
+                    System.out.println(ultraMegaHardBoss.imie + " ma teraz HP: " + ultraMegaHardBoss.hp);
+
+                }
+
+                if (bohater.czyZyje()) {
+                    System.out.println("\nWygrałeś walkę z Bossem, ale to jeszcze nie koniec...");
+                    bohater.levelUp();
+                    bohater.pokazStatystyki();
+                } else {
+                    System.out.println("\nZostałeś pokonany...");
+                    sc.close();
+                    return;
+                }
+
+            }
         }
 
             System.out.println("| ULECZ SIĘ PRZED  KOLEJNĄ WALKĄ |");
